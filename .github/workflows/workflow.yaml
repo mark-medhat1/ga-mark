@@ -16,3 +16,11 @@ jobs:
                 cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
                 cat dragon.txt
                 cat README
+            - name: log in to docker hub
+              run:  echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+            - name: build docker image
+              run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }} / my-app:latest .
+
+            - name: push image
+              run: docker push ${{ secrets. DOCKER_USERNAME }} / my-app:latest11
